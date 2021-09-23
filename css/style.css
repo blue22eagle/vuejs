@@ -1,0 +1,61 @@
+body {
+  background-color: powderblue;
+}
+
+input {
+	width: calc(100%- 40px);
+	border: 0;
+	padding: 20px;
+	font-size: 1.3em;
+	background-color: #323333;
+	color: #bbccaa;
+}
+
+.alert {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+
+.canvas {
+	background-color: #e6c78e;
+	width: 800px;
+	height: 600px;
+	padding: 20px;
+	border: 10px;
+}
+
+.span {
+	background: #f98181;
+}
+
+.available span {
+	background: #7ea0b5;
+	display: inline-block;
+	padding: 10px;
+	color: #fff;
+	margin: 10px 0;
+}
+
+.nearby span:after {
+	content: "nearby";
+	margin-left: 10px;
+}

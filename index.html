@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My first VueJS</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="refresh" content="30000">
+    <link rel="shortcut icon" href="icon/icons8-vue-js-48.png">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="dists/vue.js"></script>
+</head>
+<body>
+	<div>
+		<a href="page.html">Goto page</a>
+	</div>
+	<div id="app2">
+		<h2>app2:</h2>
+		<button v-on:click="readRefs">Read refs</button>
+		<br>
+		<input type="text" ref="myRef"/>
+		<p>You have tape: {{output}}</p>
+		<button @click="changeOutput">Change output</button>	<!-- like v-on:click -->
+		<br><br>
+		<label>name: {{name}}, output: {{output}}</label>
+		<h2>Components (in <code>< div id="app2"></code>):</h2>
+		<component1></component1>
+		<component2></component2>
+	</div>
+	</br>
+	<div id="app">
+		<h2>app:</h2>
+		<label>Name</label>
+		<input type="text" v-model="name"/>
+		<label>Age</label>
+		<input type="text" v-model="age"/>
+		</br>
+		<p>A: {{a}}</p>	
+		<button @click="a++">Inc A</button>		<!-- a++ is a native function (not declared in app.js -->
+		<p>B: {{b}}</p>
+		<button @click="b++">Inc B</button>
+		<p>Age+ A= {{ageAndA}}</p>
+		<p>Age+ B= {{ageAndB}}</p>
+		<button v-on:dblclick="substractFromAge(10)">DbClk: substract 10 years</button>
+		<button @click="age--">Substract a year</button>
+		<button @click="age++">Add a year</button>
+		<button @dblclick="addToAge(10)">DbClk: Add 10 years</button>
+		<button @click.once="click">Click me once</button>
+		 <div v-show="error" class="alert">
+		  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+		  This is an alert box.
+		</div> 
+		<p>My age is {{age}}</p>
+		<button @click="available= !available">Toggle available</button>
+		<button @click="nearby= !nearby">Toggle nearby</button>
+		<div v-bind:class="getClasses">
+			<span>Available proprety</span>
+		</div>
+		</br>
+		<button @click="error= !error">Toggle error</button>
+		<button @click="succes= !succes">Toggle success</button>
+		<p v-show="error">There is an error</p>
+		<p v-show="succes">That come successful</p>
+		<ul>
+			<li v-for="son in sons">{{son.name}} - {{son.age}}</li>
+		</ul>
+		<h2>v-for in "div"</h2>
+		<div v-for="(son, index) in sons">
+			<p><b>{{index+ 1}}. Name: </b>{{son.name}}</p>
+			<p><b>    Age: </b>{{son.age}}</p>
+		</div>
+		<h2>v-for in "template"</h2>
+		<template v-for="(son, index) in sons">
+			<p><b>{{index+ 1}}. Name: </b>{{son.name}}</p>
+			<p><b>    Age: </b>{{son.age}}</p>
+		</template>
+		<h2>v-for in template with "(val, key)"</h2>
+		<template v-for="son in sons">
+			<p v-for="(myval, mykey) in son">{{mykey}}: {{myval}}</p>
+		</template>
+		<div class="canvas" @mousemove="updateXY">{{x}}, {{y}}</div>
+	</div>
+	<script src="components/app.js"></script>
+</body>
+</html>
