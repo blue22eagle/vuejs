@@ -14,7 +14,10 @@ app.set('views', __dirname)
 //.use(express.json()) // parse application/json
 //.use(cookieParser())
 .get('/', (req, res)=> res.render('index.html'))
-.get(/^\/(.+)/, (req, res)=> res.send(req.url))
+.get(/(.+)/, (req, res)=> {
+	res.send(req.url);
+	console.log(req.url.green.bold);
+})
 .listen(port, () => {
 	console.log((`Server is running on http://localhost:${port}\nStart at: `+ new Date().toLocaleString()).cyan.bold);
 	//console.log(new Date().getTimezoneOffset() / 60);
