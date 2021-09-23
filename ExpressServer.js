@@ -11,7 +11,7 @@ const 	express= require('express'),
 
 //app.set('views', path.join(__dirname, 'vuejs'))
 app.set(__dirname)
-.use(express.static(__dirname, 'vuejs'))
+.use(express.static(__dirname))
 .use(express.json()) // parse application/json
 .use(express.urlencoded({extended: false})) // parse application/x-www-form-urlencoded
 .use(cookieParser())
