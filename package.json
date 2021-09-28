@@ -1,0 +1,27 @@
+{
+  "name": "vuejs",
+  "version": "1.0.0",
+  "description": "A Vue Js signle page application, with Express or Http server.",
+  "main": "ExpressServer.js",
+  "scripts": {
+	"start": "node ExpressServer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blue22eagle/vuejs.git"
+  },
+  "keywords": [
+    "Node",
+    "Vue",
+    "Js",
+    "Express",
+    "Http"
+  ],
+  "author": "Blue Eagle <blue22eagle@gmail.com> (https://github.com/blue22eagle)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blue22eagle/vuejs/issues"
+  },
+  "homepage": "https://github.com/blue22eagle/vuejs#readme"
+}
