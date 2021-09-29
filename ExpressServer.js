@@ -15,16 +15,16 @@ app.set('views', __dirname)
 .use(express.json()) // parse application/json
 .use(session({
 	secret: "mysecret",
-	cookie: {maxAge: 1000* 60},
+	cookie: {maxAge: 1000* 60* 5},	// 5mn
 	saveUninitialized: true,
 	resave: false,
-	secure: true,
-	sameSite: true
+	Secure: true,
+	SameSite: true
 }))
-.use(cookieParser())
+//.use(cookieParser())
 .get('/', (req, res)=> res.render('index.html'))
 .post('/login.html', (req, res)=> {
-	req.session.userid= req.body.username;
+	req.session.myuserid= req.body.username;
 	res.send("Hey there, welcome <a href=\'/logout'>click to logout</a>");
 	console.log(req.session);
 })
@@ -32,11 +32,11 @@ app.set('views', __dirname)
 	req.session.destroy();
 	res.send("Session destroyed\n<a href=\'/'>click to back home</a>");
 })
-.get(/(.+)/, (req, res)=> {
-	if (req.session.userid)
-		console.log("\nUser: "+ req.session.userid);
+.get('*', (req, res)=> {	//	/(.+)/ instead * if you like regular expression
+	if (req.session.myuserid)
+		console.log("\nUser: "+ req.session.myuserid);
 	else
-		console.log("\nNot loged in yet");
+		console.log("\nNot logged in yet");
 	res.send(req.url);
 	console.log(req.url.green.bold);
 	if (req.url== "/session")
