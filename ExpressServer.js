@@ -8,7 +8,6 @@ const 	express= require('express'),
 		colors= require('colors'),
 		port = process.env.PORT || process.argv[2] || 8080;
 
-var sess; // global session, NOT recommended
 //app.set('views', path.join(__dirname, 'vuejs'))
 app.set('views', __dirname)
 .use(express.static(__dirname))
@@ -18,18 +17,30 @@ app.set('views', __dirname)
 	secret: "mysecret",
 	cookie: {maxAge: 1000* 60},
 	saveUninitialized: true,
-	resave: false
+	resave: false,
+	secure: true,
+	sameSite: true
 }))
 .use(cookieParser())
 .get('/', (req, res)=> res.render('index.html'))
-.get(/(.+)/, (req, res)=> {
-	req.session.userid= req.url;
-	res.send(req.url);
-	console.log(req.url.green.bold);
+.post('/login.html', (req, res)=> {
+	req.session.userid= req.body.username;
+	res.send("Hey there, welcome <a href=\'/logout'>click to logout</a>");
+	console.log(req.session);
 })
 .get('/logout', (req, res)=> {
 	req.session.destroy();
-	res.send("Session destroyed");
+	res.send("Session destroyed\n<a href=\'/'>click to back home</a>");
+})
+.get(/(.+)/, (req, res)=> {
+	if (req.session.userid)
+		console.log("\nUser: "+ req.session.userid);
+	else
+		console.log("\nNot loged in yet");
+	res.send(req.url);
+	console.log(req.url.green.bold);
+	if (req.url== "/session")
+		console.log(req.session);
 })
 .listen(port, () => {
 	console.log((`Server is running on http://localhost:${port}\nStart at: `+ new Date().toLocaleString()).cyan.bold);

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
+<style>
 body {
     display: flex;
     justify-content: center;
@@ -32,19 +32,17 @@ form input[type="submit"] {
     margin-top: 2rem;
     padding: 0.4rem;
 }
-</script>
+</style>
 </head>
 <body>
-    <form action="/user" method="post">
+    <form action="/login.html" method="post">
         <h2>Login</h2>
         <div class="input-field">
             <input type="text" name="username" id="username" placeholder="Enter Username">
         </div>
-		</br>
         <div class="input-field">
             <input type="password" name="password" id="password" placeholder="Enter Password">
         </div>
-		</br>
         <input type="submit" value="LogIn">
     </form>
 </body>
