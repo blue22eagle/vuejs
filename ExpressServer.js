@@ -10,18 +10,21 @@ const 	express= require('express'),
 
 //app.set('views', path.join(__dirname, 'vuejs'))
 app.set('views', __dirname)
+//.set('trust proxy', 1) // trust first proxy, nginx 
 .use(express.static(__dirname))
 .use(express.urlencoded({extended: false})) // parse application/x-www-form-urlencoded
 .use(express.json()) // parse application/json
 .use(session({
 	secret: "mysecret",
-	cookie: {maxAge: 1000* 60* 5},	// 5mn
+	cookie: {
+		//secure: true,
+		maxAge: 1000* 60* 5		// 5mn
+	},
 	saveUninitialized: true,
 	resave: false,
-	Secure: true,
-	SameSite: true
+	sameSite: true
 }))
-//.use(cookieParser())
+.use(cookieParser("mysecret"))
 .get('/', (req, res)=> res.render('index.html'))
 .post('/login.html', (req, res)=> {
 	req.session.myuserid= req.body.username;
@@ -39,8 +42,11 @@ app.set('views', __dirname)
 		console.log("\nNot logged in yet");
 	res.send(req.url);
 	console.log(req.url.green.bold);
-	if (req.url== "/session")
+	if (req.url== "/session") {
 		console.log(req.session);
+		console.log(req.cookies);
+		console.log(req.signedCookies);
+	}
 })
 .listen(port, () => {
 	console.log((`Server is running on http://localhost:${port}\nStart at: `+ new Date().toLocaleString()).cyan.bold);
