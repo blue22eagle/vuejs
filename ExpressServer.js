@@ -1,12 +1,13 @@
 ﻿//					بسم الله الرحمن الرحيم
 
-const 	express= require('express'),
+const 	node_path= '../../node-v16.13.0-win-x64/node_modules/',
+		express= require(node_path+ 'express'),
 		app= express(),
 		//path = require('path'),
-		cookieParser= require('cookie-parser'),
-		session = require('express-session'),
-		colors= require('colors'),
-		port = process.env.PORT || process.argv[2] || 8080;
+		cookieParser= require(node_path+ 'cookie-parser'),
+		session = require(node_path+ 'express-session'),
+		colors= require(node_path+ 'colors'),
+		port = process.env.PORT || process.argv[2] || 8000;
 
 //app.set('views', path.join(__dirname, 'vuejs'))
 app.set('views', __dirname)
@@ -50,5 +51,4 @@ app.set('views', __dirname)
 })
 .listen(port, () => {
 	console.log((`Server is running on http://localhost:${port}\nStart at: `+ new Date().toLocaleString()).cyan.bold);
-	//console.log(new Date().getTimezoneOffset() / 60);
 });

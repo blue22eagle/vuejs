@@ -1,7 +1,7 @@
 {
   "name": "vuejs",
   "version": "1.0.0",
-  "description": "A Vue Js signle page application, with Express or Http server.",
+  "description": "A Vue Js single page application, with Express or Http server.",
   "main": "ExpressServer.js",
   "scripts": {
 	"start": "node ExpressServer.js",
